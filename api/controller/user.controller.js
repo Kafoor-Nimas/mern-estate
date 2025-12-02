@@ -36,6 +36,7 @@ export const deleteUser = async (req, res, next) => {
     return next(errorHadler(401, "You can only delete your own account"));
   try {
     await User.findByIdAndDelete(req.params.id);
+    res.clearCookie("access_token", { httpOnly: true });
     res.status(200).json("User has been deleted");
   } catch (error) {
     next(error);

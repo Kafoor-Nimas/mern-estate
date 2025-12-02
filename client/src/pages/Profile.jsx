@@ -4,6 +4,9 @@ import {
   updateUserStart,
   updateUserSuccess,
   updateUserFailure,
+  deleteUserStart,
+  deleteUserSuccess,
+  deleteUserfauilure,
 } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 
@@ -38,6 +41,22 @@ const Profile = () => {
       return;
     } catch (error) {
       dispatch(updateUserFailure(error.message));
+    }
+  };
+  const hadleDeleteUser = async () => {
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserfauilure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserfauilure(error.message));
     }
   };
   return (
@@ -83,6 +102,7 @@ const Profile = () => {
       </form>
       <div className="flex justify-between mt-5">
         <span
+          onClick={hadleDeleteUser}
           className="text-red-700 cursor-pointer
         "
         >
