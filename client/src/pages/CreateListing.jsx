@@ -243,7 +243,7 @@ const CreateListing = () => {
             <div className="flex items-center gap-2">
               <input
                 type="number"
-                id="discountedPrice"
+                id="discountPrice"
                 min="50"
                 max="10000000"
                 required
