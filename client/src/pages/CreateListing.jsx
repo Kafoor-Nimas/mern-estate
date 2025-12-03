@@ -2,6 +2,8 @@ import { useState } from "react";
 
 const CreateListing = () => {
   const [files, setFiles] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     imageUrls: [],
     name: "",
@@ -111,8 +113,27 @@ const CreateListing = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      setLoading(true);
+      setError(false);
+      const res = await fetch("/api/listing/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      setLoading(false);
+      if (data.success === false) {
+        setError(data.message);
+      }
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
   };
 
   return (
@@ -310,8 +331,9 @@ const CreateListing = () => {
               </div>
             ))}
           <button className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-80">
-            Create Listing
+            {loading ? "Creating..." : "Create Listing"}
           </button>
+          {error && <p className="text-red-700 text-sm">{error}</p>}
         </div>
       </form>
     </main>
