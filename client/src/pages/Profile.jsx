@@ -202,7 +202,7 @@ const Profile = () => {
                 <img
                   src={listing.imageUrls[0]}
                   alt="listing cover"
-                  className="w-16 h-16 object-conatin"
+                  className="w-16 h-16 object-cover "
                 />
               </Link>
               <Link
