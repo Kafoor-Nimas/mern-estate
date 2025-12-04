@@ -3,7 +3,7 @@ dotenv.config();
 
 import { v2 as cloudinary } from "cloudinary";
 
-console.log("🔧 Configuring Cloudinary with HARDCODED values...");
+// console.log("🔧 Configuring Cloudinary with HARDCODED values...");
 
 // ✅ HARDCODED - Direct values (not from .env)
 cloudinary.config({
@@ -14,9 +14,9 @@ cloudinary.config({
 
 // Verify it worked
 const config = cloudinary.config();
-console.log("✅ Cloudinary configured!");
-console.log("Cloud Name:", config.cloud_name);
-console.log("API Key:", config.api_key);
-console.log("API Secret:", config.api_secret ? "✅ Present" : "❌ Missing");
+// console.log("✅ Cloudinary configured!");
+// console.log("Cloud Name:", config.cloud_name);
+// console.log("API Key:", config.api_key);
+// console.log("API Secret:", config.api_secret ? "✅ Present" : "❌ Missing");
 
 export default cloudinary;
