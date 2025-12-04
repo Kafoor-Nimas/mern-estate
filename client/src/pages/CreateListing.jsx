@@ -24,7 +24,6 @@ const CreateListing = () => {
   });
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
-  console.log(formData);
 
   const handleImageSubmit = async (e) => {
     e.preventDefault(); // ✅ ADD THIS
