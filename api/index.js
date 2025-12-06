@@ -7,7 +7,7 @@ import authRouter from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import listingRouter from "./routes/listing.route.js";
 import uploadRouter from "./routes/upload.route.js";
-import path from "path";
+// import path from "path";
 
 mongoose
   .connect(process.env.MONGODB_URL)
@@ -18,7 +18,7 @@ mongoose
     console.log(err);
   });
 
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 
 const app = express();
 app.use(express.json());
@@ -33,11 +33,11 @@ app.use("/api/auth", authRouter);
 app.use("/api/listing", listingRouter);
 app.use("/api/upload", uploadRouter);
 
-app.use(express.static(path.join(__dirname, "/client/dist")));
+// app.use(express.static(path.join(__dirname, "/client/dist")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+// });
 
 //create a middleware for error handling
 app.use((err, req, res, next) => {
